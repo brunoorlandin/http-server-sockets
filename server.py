@@ -33,10 +33,23 @@ def put():
 
 def get(headers):
     filename = headers[0].split()[1]
+    print(filename)
 
     # verifica qual arquivo está sendo solicitado e envia a resposta para o cliente
     if filename == "/":
         filename = "/index.html"
+
+    if filename == "/register.html":
+        filename = "/register.html"
+
+    if filename == "/ipsum.html":
+        filename = "/ipsum.html"
+
+    if filename == "/utils/icons8-group-task-96.png":
+        filename = "/utils/icons8-group-task-96.png"
+
+    if filename == "/index.css":
+        filename = "/index.css"
 
     # try e except para tratamento de erro quando um arquivo solicitado não existir
     try:
@@ -80,7 +93,7 @@ while True:
             print("Recebeu put")
         elif requestType == "post":
             print("Recebeu post")
-            res= post(headers)
+            res = post(headers)
         elif requestType == "delete":
             print("Recebeu delete")
         else:
