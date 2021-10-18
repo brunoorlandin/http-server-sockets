@@ -16,8 +16,11 @@ print("Servidor em execução...")
 print("Acesse o link: http://localhost:%s" % SERVER_PORT)
 
 
-def post():
-    print(post)
+def post(params):
+    print(params[-1])
+    filename = headers[0].split()[1]
+    print(filename)
+    return 'headers[0].split()[1]'
 
 
 def delete():
@@ -68,7 +71,8 @@ while True:
 
         # verifica qual tipo de requisicao
         requestType = headers[0].split("/")[0].lower().strip()
-
+        #print(f'headers => {headers}')
+        print(f'req type => {requestType}')
         if requestType == "get":
             print("Recebeu GET")
             res = get(headers)
@@ -76,6 +80,7 @@ while True:
             print("Recebeu put")
         elif requestType == "post":
             print("Recebeu post")
+            res= post(headers)
         elif requestType == "delete":
             print("Recebeu delete")
         else:

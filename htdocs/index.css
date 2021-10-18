@@ -1,0 +1,193 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(94, 96, 245, 0.815);
+}
+
+a:link {
+    text-decoration: none;
+    color: inherit;
+    cursor: auto;
+}
+
+a:visited {
+    text-decoration: none;
+    color: inherit;
+    cursor: auto;
+}
+.HEADER {
+    display: flex;
+    height: 100px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.HEADER .HEADER_TITLE {
+    display:    flex;
+    width:      50%;
+    color: #f3aa0dd0;
+}
+
+.HEADER .HEADER_TITLE span a{
+    font-size: 28px;
+    font: 600;
+    cursor: pointer;
+}
+
+.HEADER .HEADER_CONTAINER_LIST {
+    display: block;      
+}
+.HEADER .HEADER_CONTAINER_LIST ul{
+    display:flex;
+    flex-direction: row;
+    list-style: none; 
+
+}
+
+.HEADER .HEADER_CONTAINER_LIST ul > li{
+    margin:  0 60px 0 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgb(232, 230, 238);
+}
+
+.HEADER .HEADER_CONTAINER_LIST ul li a{
+    cursor: pointer;
+}
+
+.HOME_CONTAINER{
+    background-color: #7b7df6;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.HOME_CONTAINER .HOME_CONTENT{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column; 
+}
+
+.HOME_CONTAINER .HOME_CONTENT .CONTAINER_TITLE{
+    display: flex;
+    height: 10%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column; 
+    font-size: 22px;
+    color: #FFFFFF;
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_DIVISIBLE_CONTAINER{
+    display: flex;
+    height: 100%;
+    width: 25%;
+    align-items: center;
+    justify-content: center;  
+    margin: 0 35%;
+    color: #FFFFFF;
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_DIVISIBLE_CONTAINER
+.HOME_DIVISIBLE_LEFT_CONTENT{
+    display: flex;
+    height: 500px;
+    width: 50%;
+    align-items: center;
+    justify-content: center; 
+    text-align: right;
+    margin: 0 20px 0 0; 
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_DIVISIBLE_CONTAINER
+.HOME_DIVISIBLE_RIGHT_CONTENT{
+    display: flex;
+    height: 500px;
+    width: 50%;
+    align-items: center;
+    justify-content: center; 
+    text-align: left; 
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_CARD_CONTAINER
+{
+    display: flex;
+    height: 100%;
+    width: 60%;
+    align-items: center;
+    justify-content: center;  
+    margin: 0 35%;
+    color: #000000;
+    margin: 100px 0 0 0;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_CARD_CONTAINER
+.HOME_CARD_LEFT_CONTENT
+{
+    display: flex;
+    height: 100%;
+    width: 40%;
+    align-items: center;
+    justify-content: center;  
+    margin: 0 35%;
+    color: #000000;
+    margin: 100px 0;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+}
+.HOME_CONTAINER .HOME_CONTENT .HOME_CARD_CONTAINER
+.HOME_CARD_LEFT_CONTENT .HOME_CARD_ICON
+{
+    height: 120px;
+    width: 120px;
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_CARD_CONTAINER
+.HOME_CARD_RIGHT_CONTENT
+{
+    display: flex;
+    height: 80%;
+    width: 60%;
+    align-items: center;
+    justify-content: center;  
+    margin: 0 35%;
+    color: #000000;
+    margin: 25px 25px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    flex-direction: column;
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_CARD_CONTAINER
+.HOME_CARD_RIGHT_CONTENT > span
+{
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_CARD_CONTAINER
+.HOME_CARD_RIGHT_CONTENT > span ~ span
+{
+    font-size: 12px;
+}
+
+.HOME_CONTAINER .HOME_CONTENT .HOME_TEAM_CONTAINER { 
+    display: flex;
+    height: 100%;
+    width: 60%;
+    align-items: center;
+    justify-content: center;  
+    margin: 0 35%;
+    color: #000000;
+    margin: 25px 25px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    flex-direction: row;
+}
