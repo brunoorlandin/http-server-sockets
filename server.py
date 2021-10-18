@@ -20,7 +20,15 @@ def post(params):
     print(params[-1])
     filename = headers[0].split()[1]
     print(filename)
-    return 'headers[0].split()[1]'
+    data = params[-1].split("&")
+
+    try:
+        response = "HTTP/1.1 200 OK\n\n" + data[0] + data[1]
+    except FileNotFoundError:
+        # caso o arquivo solicitado não exista no servidor, gera uma resposta de erro
+        response = "HTTP/1.1 404 NOT FOUND\n\n<h1>ERROR 404!<br>File Not Found!</h1>"
+
+    return response
 
 
 def delete():
@@ -84,7 +92,7 @@ while True:
 
         # verifica qual tipo de requisicao
         requestType = headers[0].split("/")[0].lower().strip()
-        #print(f'headers => {headers}')
+        # print(f'headers => {headers}')
         print(f'req type => {requestType}')
         if requestType == "get":
             print("Recebeu GET")
