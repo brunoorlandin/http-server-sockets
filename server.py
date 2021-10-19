@@ -1,4 +1,6 @@
+from os import name
 import socket
+import json
 
 SERVER_HOST = ""
 
@@ -16,17 +18,33 @@ print("Servidor em execução...")
 print("Acesse o link: http://localhost:%s" % SERVER_PORT)
 
 
+def postFile(name, password):
+    file = open("htdocs/data.json", "a")
+    #json.dump(f'{name}:{password}', file)
+    content = json.loads(file)
+    print(content)
+    file.close()
+
+
 def post(params):
     print(params[-1])
     filename = headers[0].split()[1]
+    print(headers[0].split())
     print(filename)
     data = params[-1].split("&")
 
+    name = data[0].split("=")[1]
+    password = data[1].split("=")[1]
+
+    print(data)
+
     try:
-        response = "HTTP/1.1 200 OK\n\n" + data[0] + data[1]
+        response = "HTTP/1.1 200 OK\n\n" + name + ":" + password
     except FileNotFoundError:
         # caso o arquivo solicitado não exista no servidor, gera uma resposta de erro
         response = "HTTP/1.1 404 NOT FOUND\n\n<h1>ERROR 404!<br>File Not Found!</h1>"
+
+    #postFile(name, password)
 
     return response
 
