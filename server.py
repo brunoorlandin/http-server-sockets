@@ -49,8 +49,12 @@ def post(params):
     return response
 
 
-def delete():
-    print("delete")
+def delete(headers):
+    print(headers)
+
+    response = "HTTP/1.1 200 OK\n\n" + "delete"
+
+    return response
 
 
 def put():
@@ -122,6 +126,7 @@ while True:
             res = post(headers)
         elif requestType == "delete":
             print("Recebeu delete")
+            res = delete(headers)
         else:
             print("recebeu um metodo nao existente")
             res = "HTTP/1.1 404 METHOD NOT FOUND\n\n"
