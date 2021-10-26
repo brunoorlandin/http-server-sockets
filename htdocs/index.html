@@ -7,6 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet"> 
 </head>
 <body>
+
+    <script>
+        function deleteReq() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("DELETE")
+        }
+    </script>
     
         <header class="HEADER">
             <div class="HEADER_TITLE">
@@ -27,6 +34,12 @@
                     <input name="name"      value="unifs">
                     <input name="password"  value="FEI">
                     <button>Send my greetings</button>
+                </form>
+            </div>
+
+            <div>
+                <form onclick="deleteReq()">
+                    <button>DELETE</button>
                 </form>
             </div>
             
