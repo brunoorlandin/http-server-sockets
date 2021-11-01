@@ -7,6 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet"> 
 </head>
 <body>
+
+    <script>
+        function deleteReq() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("DELETE")
+        }
+    </script>
     
         <header class="HEADER">
             <div class="HEADER_TITLE">
@@ -20,71 +27,26 @@
                 </ul>
             </div>
         </header>
-        <div class="HOME_CONTAINER">
-            <div class="HOME_CONTENT">
-                <div class="CONTAINER_TITLE">   
-                    <span>Better place to code</span>
-                </div>
-                <div class="HOME_DIVISIBLE_CONTAINER">
-                    <div class="HOME_DIVISIBLE_LEFT_CONTENT">
-                        <span>Mussum Ipsum, cacilds vidis litro abertis. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Cevadis im ampola pa arma uma pindureta. Si num tem leite então bota uma pinga aí cumpadi! Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
 
-                            Diuretics paradis num copo é motivis de denguis. Manduma pindureta quium dia nois paga. Atirei o pau no gatis, per gatis num morreus. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget.
-                            
-                            Delegadis gente finis, bibendum egestas augue arcu ut est. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. A ordem dos tratores não altera o pão duris. Interagi no mé, cursus quis, vehicula ac nisi. </span>
-                    </div>
-                    <div class="HOME_DIVISIBLE_RIGHT_CONTENT">
-                        <span>Mussum Ipsum, cacilds vidis litro abertis. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Cevadis im ampola pa arma uma pindureta. Si num tem leite então bota uma pinga aí cumpadi! Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
+            
+            <div>
+                <form action="/post" method="POST">
+                    <input name="name"      value="unifs">
+                    <input name="password"  value="FEI">
+                    <button>Send my greetings</button>
+                </form>
+            </div>
 
-                            Diuretics paradis num copo é motivis de denguis. Manduma pindureta quium dia nois paga. Atirei o pau no gatis, per gatis num morreus. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget.
-                            
-                            Delegadis gente finis, bibendum egestas augue arcu ut est. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. A ordem dos tratores não altera o pão duris. Interagi no mé, cursus quis, vehicula ac nisi. </span>
-                    </div>
-                </div>
-                <div class="HOME_CARD_CONTAINER">
-                    <div class="HOME_CARD_LEFT_CONTENT">
-                        <img class="HOME_CARD_ICON" src="../utils/icons8-group-task-96.png">
-                    </div>
-                    <div class="HOME_CARD_RIGHT_CONTENT">
-                        <span>Better place to learn</span>
-                        <span>"Mussum Ipsum, cacilds vidis litro abertis. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Cevadis im ampola pa arma uma pindureta. Si num tem leite então bota uma pinga aí cumpadi! Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
-
-                            Diuretics paradis num copo é motivis de denguis. Manduma pindureta quium dia nois paga. Atirei o pau no gatis, per gatis num morreus. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget.
-                            
-                            Delegadis gente finis, bibendum egestas augue arcu ut est. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. A ordem dos tratores não altera o pão duris. Interagi no mé, cursus quis, vehicula ac nisi. "</span>
-                    </div>
-                </div>
-
-                <div class="HOME_CARD_CONTAINER">
-                    <div class="HOME_CARD_LEFT_CONTENT">
-                        <img class="HOME_CARD_ICON" src="../utils/icons8-launchpad-128.png">
-                    </div>
-                    <div class="HOME_CARD_RIGHT_CONTENT">
-                        <span>Better to launch you career</span>
-                        <span>"Mussum Ipsum, cacilds vidis litro abertis. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Cevadis im ampola pa arma uma pindureta. Si num tem leite então bota uma pinga aí cumpadi! Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!
-
-                            Diuretics paradis num copo é motivis de denguis. Manduma pindureta quium dia nois paga. Atirei o pau no gatis, per gatis num morreus. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget.
-                            
-                            Delegadis gente finis, bibendum egestas augue arcu ut est. Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. A ordem dos tratores não altera o pão duris. Interagi no mé, cursus quis, vehicula ac nisi. "</span>
-                    </div>
-                </div>
-
-                <div class="HOME_TEAM_CONTAINER">
-                    <div class="HOME_TEAM_CONTENT">
-                        
-                    </div>
-                </div>
+            <div>
+                <form onclick="deleteReq()">
+                    <button>DELETE</button>
+                </form>
             </div>
             
-        </div>
     
-        <!--
+        
     </div>
-        <form action="/$" method="POST">
-            <input name="name"      value="unifs">
-            <input name="password"  value="FEI">
-            <button>Send my greetings</button>
-        </form>
-    -->
+        
+    
 </body>
 </html>
