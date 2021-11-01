@@ -76,18 +76,6 @@ def get(headers):
     if filename == "/":
         filename = "/index.html"
 
-    if filename == "/register.html":
-        filename = "/register.html"
-
-    if filename == "/ipsum.html":
-        filename = "/ipsum.html"
-
-    if filename == "/utils/icons8-group-task-96.png":
-        filename = "/utils/icons8-group-task-96.png"
-
-    if filename == "/index.css":
-        filename = "/index.css"
-
     # try e except para tratamento de erro quando um arquivo solicitado não existir
     try:
         # abrir o arquivo e enviar para o cliente
