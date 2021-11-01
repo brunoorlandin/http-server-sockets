@@ -1,4 +1,5 @@
 from os import name
+from scriptPost import postData
 import socket
 import json
 import os
