@@ -2,6 +2,7 @@ from os import name
 from scriptPost import postData
 import socket
 import json
+import os
 
 SERVER_HOST = ""
 
@@ -18,11 +19,13 @@ server_socket.listen(1)
 print("Servidor em execução...")
 print("Acesse o link: http://localhost:%s" % SERVER_PORT)
 
+
 def post(params):
     result = postData(params)
 
     try:
-        response = "HTTP/1.1 200 OK\n\n" + result['name'] + ":" + result['password']
+        response = "HTTP/1.1 200 OK\n\n" + \
+            result['name'] + ":" + result['password']
     except FileNotFoundError:
         # caso o arquivo solicitado não exista no servidor, gera uma resposta de erro
         response = "HTTP/1.1 404 NOT FOUND\n\n<h1>ERROR 404!<br>File Not Found!</h1>"
@@ -32,8 +35,33 @@ def post(params):
     return response
 
 
-def delete():
-    print("delete")
+def delete(headers):
+    resource = headers[0].split()[1]
+    resourceFomated = resource.split("/")
+    resourceFomated.pop(0)
+
+    if len(resourceFomated) == 1:
+        resourceString = resourceFomated[0]
+    else:
+        resourceString = ""
+        for i in range(len(resourceFomated)):
+            resourceString += "/"
+            resourceString += resourceFomated[i]
+        resourceString = resourceString[1:]
+
+    print(resourceString)
+
+    if os.path.exists(resourceString):
+        os.remove(resourceString)
+        code = "HTTP/1.1 200 OK\n\n"
+        isDeleted = "Recurso deletado"
+    else:
+        code = "HTTP/1.1 404 NOT FOUND\n\n"
+        isDeleted = "Recurso nao encontrado"
+
+    response = code + isDeleted
+
+    return response
 
 
 def put():
@@ -47,18 +75,6 @@ def get(headers):
     # verifica qual arquivo está sendo solicitado e envia a resposta para o cliente
     if filename == "/":
         filename = "/index.html"
-
-    if filename == "/register.html":
-        filename = "/register.html"
-
-    if filename == "/ipsum.html":
-        filename = "/ipsum.html"
-
-    if filename == "/utils/icons8-group-task-96.png":
-        filename = "/utils/icons8-group-task-96.png"
-
-    if filename == "/index.css":
-        filename = "/index.css"
 
     # try e except para tratamento de erro quando um arquivo solicitado não existir
     try:
@@ -104,7 +120,7 @@ while True:
             print("Recebeu post")
             res = post(headers)
         elif requestType == "delete":
-            print("Recebeu delete")
+            res = delete(headers)
         else:
             print("recebeu um metodo nao existente")
             res = "HTTP/1.1 404 METHOD NOT FOUND\n\n"
