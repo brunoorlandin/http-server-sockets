@@ -30,8 +30,6 @@ def post(params):
         # caso o arquivo solicitado não exista no servidor, gera uma resposta de erro
         response = "HTTP/1.1 404 NOT FOUND\n\n<h1>ERROR 404!<br>File Not Found!</h1>"
 
-    #postFile(name, password)
-
     return response
 
 
@@ -49,8 +47,6 @@ def delete(headers):
             resourceString += resourceFomated[i]
         resourceString = resourceString[1:]
 
-    print(resourceString)
-
     if os.path.exists(resourceString):
         os.remove(resourceString)
         code = "HTTP/1.1 200 OK\n\n"
@@ -65,8 +61,6 @@ def delete(headers):
 
 
 def put(headers, body):
-    #resource = headers[0].decode().split()[1].replace("/", "")
-
     resource = headers[0].decode().split()[1]
     resourceFomated = resource.split("/")
     resourceFomated.pop(0)
@@ -82,8 +76,6 @@ def put(headers, body):
 
     content = body[-1]
 
-    print(resource)
-
     try:
         file = open(resourceString, "wb")
         file.write(content)
@@ -97,7 +89,6 @@ def put(headers, body):
 
 def get(headers):
     filename = headers[0].decode().split()[1]
-    print(filename)
 
     # verifica qual arquivo está sendo solicitado e envia a resposta para o cliente
     if filename == "/":
@@ -142,39 +133,28 @@ while True:
 
     # verifica se a request possui algum conteúdo (pois alguns navegadores ficam periodicamente enviando alguma string vazia)
     if request:
-        print(request)
-
         headers = request.split("\n".encode())
         body = request.split("\r\n\r\n".encode())
 
         # verifica qual tipo de requisicao
         requestType = headers[0].decode().split("/")[0].lower().strip()
-        # print(f'headers => {headers}')
-        print(f'req type => {requestType}')
 
         try:
             if requestType == "get":
-                print("Recebeu GET")
                 res = get(headers)
-                print("Depois do get")
             elif requestType == "put":
-                print("Recebeu put")
                 res = put(headers, body)
             elif requestType == "post":
-                print("Recebeu post")
                 res = post(headers)
             elif requestType == "delete":
-                print("Metodo delete")
                 res = delete(headers)
             else:
-                print("recebeu um metodo nao existente")
                 res = "HTTP/1.1 404 METHOD NOT FOUND\n\n"
         except FileNotFoundError:
             # caso o arquivo solicitado não exista no servidor, gera uma resposta de erro
             response = "HTTP/1.1 404 NOT FOUND\n\n<h1>ERROR 404!<br>File Not Found!</h1>"
 
         # envia a resposta HTTP
-        print("teste")
         client_connection.sendall(res.encode())
 
         client_connection.close()
