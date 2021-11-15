@@ -36,7 +36,7 @@ def post(params):
 
 
 def delete(headers):
-    resource = headers[0].split()[1]
+    resource = headers[0].decode().split()[1]
     resourceFomated = resource.split("/")
     resourceFomated.pop(0)
 
@@ -64,12 +64,39 @@ def delete(headers):
     return response
 
 
-def put():
-    print("put")
+def put(headers, body):
+    #resource = headers[0].decode().split()[1].replace("/", "")
+
+    resource = headers[0].decode().split()[1]
+    resourceFomated = resource.split("/")
+    resourceFomated.pop(0)
+
+    if len(resourceFomated) == 1:
+        resourceString = resourceFomated[0]
+    else:
+        resourceString = ""
+        for i in range(len(resourceFomated)):
+            resourceString += "/"
+            resourceString += resourceFomated[i]
+        resourceString = resourceString[1:]
+
+    content = body[-1]
+
+    print(resource)
+
+    try:
+        file = open(resourceString, "wb")
+        file.write(content)
+        file.close()
+        response = "HTTP/1.1 200 OK\n\nRecurso recebido"
+    except:
+        response = "HTTP/1.1 404 NOT FOUND\n\nRecurso nao recebido"
+
+    return response
 
 
 def get(headers):
-    filename = headers[0].split()[1]
+    filename = headers[0].decode().split()[1]
     print(filename)
 
     # verifica qual arquivo está sendo solicitado e envia a resposta para o cliente
@@ -94,38 +121,60 @@ def get(headers):
 
 
 while True:
+
     # espera por conexões
     # client_connection: o socket que será criado para trocar dados com o cliente de forma dedicada
     # client_address: tupla (IP do cliente, Porta do cliente)
     client_connection, client_address = server_socket.accept()
 
     # pega a solicitação do cliente
-    request = client_connection.recv(1024).decode()
+    request = bytes()
+    request_chunk = client_connection.recv(2048)
+    client_connection.settimeout(1)
+    try:
+        while request_chunk:
+            request += request_chunk
+            request_chunk = client_connection.recv(2048)
+    except:
+        pass
+
+    client_connection.settimeout(0)
+
     # verifica se a request possui algum conteúdo (pois alguns navegadores ficam periodicamente enviando alguma string vazia)
     if request:
-        # print(request)
+        print(request)
 
-        headers = request.split("\n")
+        headers = request.split("\n".encode())
+        body = request.split("\r\n\r\n".encode())
 
         # verifica qual tipo de requisicao
-        requestType = headers[0].split("/")[0].lower().strip()
+        requestType = headers[0].decode().split("/")[0].lower().strip()
         # print(f'headers => {headers}')
         print(f'req type => {requestType}')
-        if requestType == "get":
-            print("Recebeu GET")
-            res = get(headers)
-        elif requestType == "put":
-            print("Recebeu put")
-        elif requestType == "post":
-            print("Recebeu post")
-            res = post(headers)
-        elif requestType == "delete":
-            res = delete(headers)
-        else:
-            print("recebeu um metodo nao existente")
-            res = "HTTP/1.1 404 METHOD NOT FOUND\n\n"
+
+        try:
+            if requestType == "get":
+                print("Recebeu GET")
+                res = get(headers)
+                print("Depois do get")
+            elif requestType == "put":
+                print("Recebeu put")
+                res = put(headers, body)
+            elif requestType == "post":
+                print("Recebeu post")
+                res = post(headers)
+            elif requestType == "delete":
+                print("Metodo delete")
+                res = delete(headers)
+            else:
+                print("recebeu um metodo nao existente")
+                res = "HTTP/1.1 404 METHOD NOT FOUND\n\n"
+        except FileNotFoundError:
+            # caso o arquivo solicitado não exista no servidor, gera uma resposta de erro
+            response = "HTTP/1.1 404 NOT FOUND\n\n<h1>ERROR 404!<br>File Not Found!</h1>"
 
         # envia a resposta HTTP
+        print("teste")
         client_connection.sendall(res.encode())
 
         client_connection.close()

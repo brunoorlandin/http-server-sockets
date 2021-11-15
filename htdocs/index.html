@@ -1,20 +1,13 @@
 <html>
 <head>
     <title>Home</title>
+    <script src="./script.js"></script>
     <link rel="stylesheet" href="index.css"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet"> 
 </head>
-<body>
-
-    <script>
-        function deleteReq() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("DELETE")
-        }
-    </script>
-    
+<body>    
         <header class="HEADER">
             <div class="HEADER_TITLE">
                 <span><a href="index.html">HardCode</a></span>
@@ -23,7 +16,6 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="ipsum.html">ipsum</a></li>
-                    <li><a href="register.html">Register</a></li>
                 </ul>
             </div>
         </header>
@@ -42,9 +34,9 @@
                     <input type="file" name="name"  value="unifs">
                     <button>Send my greetings</button>
                 </form>
-                <form onclick="deleteReq()">
-                    <button>DELETE</button>
-                </form>
+                
+                <input id="url" type="text">
+                <button onclick="deleteReq()">DELETE</button>
             </div>
             
     
